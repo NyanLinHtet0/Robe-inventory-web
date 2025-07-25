@@ -31,45 +31,61 @@ const category_list = [
                         ['Thabate']
                     ]
 
+const lookup_item_byid = new Map();
+
+
+
+
 
 const category =  document.getElementById("inven_master_list_id")
 
 
 async function render_list(){
     category.innerHTML = ""
-    category_list.forEach(item_name => {
+
+    for (let j = 0; j < category_list.length; j++) {
         let item_category = document.createElement("div")
         item_category.tabIndex = 0
         item_category.classList.add("inven_category")
-        item_category.textContent = item_name[0]
-        item_category.id = `cate_${item_name[0]}`
+        item_category.textContent = category_list[j][0]
+        item_category.id = `cate_${category_list[j][0]}`
         category.appendChild(item_category)
-
-        if(item_name.length> 1){
-            for(let i = 1; i < item_name.length-1; i++ ){
+        // Create a div to hold the items in this category
+        if(category_list[j].length> 1){
+            for(let i = 1; i < category_list[j].length-1; i++ ){
                 let item = document.createElement("div")
-                item.textContent = item_name[i]
+                item.textContent = category_list[j][i]
                 item.tabIndex = 0
                 item.classList.add("inven_item")    
-                document.getElementById(`cate_${item_name[0]}`).appendChild(item)
+                document.getElementById(`cate_${category_list[j][0]}`).appendChild(item)
+                let id = `${String(j+1).padStart(2, "0")}${String(i).padStart(2, "0")}`;
+                item.dataset.data_id = id
+                let x_manager = new ItemManager(id, item.textContent);
+                lookup_item_byid.set(id, x_manager);
             }
-        }        
-    })
+        }
+    }
 }
 render_list()
+
+data_display = document.getElementById("data_display_id")
 
 const items = document.querySelectorAll(".inven_item")
 category_list.forEach(item_name => {
     let item_category = document.getElementById(`cate_${item_name[0]}`);
     let children = item_category.querySelectorAll(".inven_item");
-
+    // Add click event listener to the ITEMS in category
     item_category.addEventListener("click", function() {
         children.forEach(child => {
             child.classList.toggle("show"); 
             child.addEventListener("click", (event)=>{
-                event.stopPropagation();
+                event.stopPropagation()
+                data_display.textContent = lookup_item_byid.get(child.dataset.data_id).get_report_string()
             })
         });
     });
 });
+
+console.log(lookup_item_byid);
+
 

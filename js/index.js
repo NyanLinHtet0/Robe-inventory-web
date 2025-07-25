@@ -39,8 +39,17 @@ const lookup_item_byid = new Map();
 
 const category =  document.getElementById("inven_master_list_id")
 
+function populate_data_by_id(id, data_display) {
+    let item = lookup_item_byid.get(id);
+    if (item) {
+        data_display.textContent = item.id
+    }
+}
 
-async function render_list(){
+
+
+
+function render_list(){
     category.innerHTML = ""
 
     for (let j = 0; j < category_list.length; j++) {
@@ -81,6 +90,8 @@ category_list.forEach(item_name => {
             child.addEventListener("click", (event)=>{
                 event.stopPropagation()
                 data_display.textContent = lookup_item_byid.get(child.dataset.data_id).get_report_string()
+                //populate the data display with the item's data
+                populate_data_by_id(child.dataset.data_id, data_display);
             })
         });
     });

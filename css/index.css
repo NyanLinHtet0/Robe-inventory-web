@@ -9,11 +9,7 @@
   width: 10vw;
   row-gap: .2rem;
 }
-.data_display{
-  display: block;
-  border-style: solid;
-  height: 50vh;
-}
+
 
 .inven_category {
   border-style: solid;
@@ -62,4 +58,26 @@
 
 .inven_item:hover{
     background-color: #cdff;
+}
+
+.data_display{
+  padding: .6rem;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  height: 50vh;
+}
+
+table {
+  width: 45%;
+  border-collapse: collapse;
+  margin: 10px 10px 10px 10px;
+}
+th, td {
+  border: 1px solid #999;
+  padding: 8px 12px;
+  text-align: center;
+}
+th {
+  background-color: #f2f2f2;
 }

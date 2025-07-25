@@ -1,0 +1,60 @@
+.body{
+  display: grid;
+  
+}
+.inven_master_list{
+  font-size: 1.5rem;
+  display:flex;
+  flex-direction: column;
+  width: 10vw;
+  row-gap: .2rem;
+}
+
+.inven_category {
+  border-style: solid;
+  width: 9vw;
+  border-width: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  cursor: pointer; /* 👈 Change cursor on hover */
+  transition: background-color 0.2s, transform 0.2s ease; /* Smooth animation */
+  max-height: 40vw;
+  padding-left: .2rem;
+}
+.inven_category.expanded {
+    overflow-y: auto;
+}
+
+/* 🔁 Hover effect */
+.inven_category:hover {
+  background-color: #f0f0f0;
+}
+
+/* ✅ Add this class dynamically when selected */
+.inven_category.selected {
+  background-color: #d0eaff;
+  transform: scale(1.03); /* Slight zoom */
+  border-color: #3399ff;
+}
+
+.inven_item{
+  width: 8vw;
+  display: none;
+  border-style: solid;
+  text-align: right;
+  border-width: 1px;
+  border-color: #111111;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+  padding-right: .3rem;
+  align-self: flex-end;
+}
+
+.inven_item.show {
+  display: inline-block; /* or 'inline-block' if you want inline layout */
+}
+
+.inven_item:hover{
+    background-color: #cdff;
+}

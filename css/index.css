@@ -1,6 +1,6 @@
-.body{
-  display: grid;
-  
+.body_data{
+  display:grid;
+  grid-template-columns: 10vw 80vw;
 }
 .inven_master_list{
   font-size: 1.5rem;
@@ -8,6 +8,11 @@
   flex-direction: column;
   width: 10vw;
   row-gap: .2rem;
+}
+.data_display{
+  display: block;
+  border-style: solid;
+  height: 50vh;
 }
 
 .inven_category {

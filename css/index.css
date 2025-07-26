@@ -2,12 +2,31 @@
   display:grid;
   grid-template-columns: 10vw 80vw;
 }
+
 .inven_master_list{
   font-size: 1.5rem;
   display:flex;
   flex-direction: column;
   width: 10vw;
   row-gap: .2rem;
+}
+.data_panel{
+  grid-column: 2;
+}
+.data_display{
+  padding: .6rem;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  height: 50vh;
+  grid-column: 2;
+}
+
+.edit_menu{
+  width: 40vw;
+  border-style: solid;
+  height: 20vh;
+  grid-column: 2;
 }
 
 
@@ -22,6 +41,7 @@
   transition: background-color 0.2s, transform 0.2s ease; /* Smooth animation */
   max-height: 40vw;
   padding-left: .2rem;
+  grid-column: 1;
 }
 .inven_category.expanded {
     overflow-y: auto;
@@ -60,13 +80,6 @@
     background-color: #cdff;
 }
 
-.data_display{
-  padding: .6rem;
-  display: flex;
-  flex-direction: column;
-  border-style: solid;
-  height: 50vh;
-}
 
 table {
   width: 45%;

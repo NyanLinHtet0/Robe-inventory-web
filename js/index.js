@@ -85,11 +85,12 @@ category_list.forEach(item_name => {
     let children = item_category.querySelectorAll(".inven_item");
     // Add click event listener to the ITEMS in category
     item_category.addEventListener("click", function() {
+        item_category.classList.toggle("expanded")
         children.forEach(child => {
             child.classList.toggle("show"); 
             child.addEventListener("click", (event)=>{
                 event.stopPropagation()
-                data_display.textContent = lookup_item_byid.get(child.dataset.data_id).get_report_string()
+                // data_display.textContent = lookup_item_byid.get(child.dataset.data_id).get_report_string()
                 //populate the data display with the item's data
                 populate_data_by_id(child.dataset.data_id, data_display);
             })

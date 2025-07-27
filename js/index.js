@@ -42,7 +42,7 @@ const category =  document.getElementById("inven_master_list_id")
 function populate_data_by_id(id, data_display) {
     let item = lookup_item_byid.get(id);
     if (item) {
-        data_display.textContent = item.id
+        data_display.textContent = item.get_report_string()
     }
 }
 

@@ -1,9 +1,25 @@
 class Item {
-    constructor(price, fees, quantity, date) {
+    constructor(price, quantity, date) {
         this.price = price;
-        this.fees = fees;
         this.quantity = quantity;
         this.date = date;
+    }
+
+    get_cost_per_item() {
+        return this.price;
+    }
+
+    display() {
+        console.log(`Date: ${this.date}`);
+        console.log(`Item info: (${this.quantity} x ${this.price + this.fees} (${this.price} + ${this.fees}))`);
+        console.log(`Total cost: ${this.get_total_cost().toFixed(2)}`);
+    }
+}
+
+class Buy_Item extends Item {
+    constructor(price, quantity, date, fee) {
+        super(price, quantity, date, fee);
+        this.fee = fee;
     }
 
     get_cost_per_item() {
@@ -16,7 +32,7 @@ class Item {
 
     display() {
         console.log(`Date: ${this.date}`);
-        console.log(`Item info: (${this.quantity} x ${this.price + this.fees} (${this.price} + ${this.fees}))`);
+        console.log(`Item info: (${this.quantity} x ${this.buy_price + this.fees} (${this.buy_price} + ${this.fees}))`);
         console.log(`Total cost: ${this.get_total_cost().toFixed(2)}`);
     }
 }
@@ -47,13 +63,35 @@ class ItemManager {
     }
 
     get_report_string() {
-        let report = `ID: ${this.id}\tName: ${this.name}\nCount: ${this.count}`;
-        console.log(report);
+        let report = `ID: ${this.id}\tName: ${this.name}\tCount: ${this.count}`;
         return report;
     }
 
 
     display_css(display){
         display.textContent = this.get_report_string()
+        const table = document.createElement("table");
+        // Create thead
+        const thead = document.createElement("thead");
+        const tfoot = document.createElement("tfoot");
+        const headRow = document.createElement("tr");
+        ["Date", "In", "Out", "Remaining"].forEach(headerText => {
+            const th = document.createElement("th");
+            th.textContent = headerText;
+            headRow.appendChild(th);    
+        });
+        thead.appendChild(headRow);
+        table.appendChild(thead);
+
+        // Create empty tbody
+        const tbody = document.createElement("tbody");
+        table.appendChild(tbody);
+        table.appendChild(tfoot);
+
+        //add table to child
+        display.appendChild(table)
+
+
+        const item_input = document.createElement("div");
     }
 }

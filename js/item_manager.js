@@ -69,13 +69,12 @@ class ItemManager {
 
 
     add_inventory_ui(display){
-        const inventory_manage_ui = document.createElement("div")
-        let input_form = createPopupUI(display)
-        inventory_manage_ui.classList.add("inventory_manage_ui")
         const button_element = document.createElement("button")
         button_element.textContent = "Add Item"
         button_element.classList.add("add_item_button")
         button_element.id = "add_item_button"
+        display.appendChild(button_element)
+        let input_form = createPopupUI(display)
         button_element.addEventListener("click", function(){
             if(button_element.textContent == "Back"){
                 button_element.textContent = "Add Item"
@@ -83,12 +82,8 @@ class ItemManager {
             else{
                 button_element.textContent = "Back"
             }
-
             input_form.classList.toggle("show")
         })
-        inventory_manage_ui.appendChild(button_element)
-        
-        display.appendChild(inventory_manage_ui, button_element)
     }
 
 

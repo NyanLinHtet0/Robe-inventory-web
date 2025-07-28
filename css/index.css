@@ -98,10 +98,14 @@ th {
 
 /*ADD ITEM FORM STYLES*/
 
-.add_button_item {
+.add_item_button {
   display: block;
+  width: 6rem;
+  height: 2rem;
+  background-color: #fcbf59; /* Green */
+  margin-bottom: 1rem;
 }
-.add_button_item.hide {
+.add_item_button.hide {
   display: none;
 }
 
@@ -110,5 +114,5 @@ th {
 }
 
 .add_item_form.show {
-  display: inline-block; 
+  display: block; 
 }

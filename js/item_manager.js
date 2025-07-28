@@ -70,13 +70,24 @@ class ItemManager {
 
     add_inventory_ui(display){
         const inventory_manage_ui = document.createElement("div")
+        let input_form = createPopupUI(display)
         inventory_manage_ui.classList.add("inventory_manage_ui")
         const button_element = document.createElement("button")
         button_element.textContent = "Add Item"
+        button_element.classList.add("add_item_button")
+        button_element.id = "add_item_button"
         button_element.addEventListener("click", function(){
-            createPopupUI(display)
+            if(button_element.textContent == "Back"){
+                button_element.textContent = "Add Item"
+            }
+            else{
+                button_element.textContent = "Back"
+            }
+
+            input_form.classList.toggle("show")
         })
         inventory_manage_ui.appendChild(button_element)
+        
         display.appendChild(inventory_manage_ui, button_element)
     }
 
@@ -112,31 +123,24 @@ class ItemManager {
 
 
 
-function createPopupUI(display,button) {
+function createPopupUI(display) {
     // Create Add Item button
 
 
     // Create modal container
-    const modal = document.createElement("div");
-    modal.id = "itemModal";
-    modal.className = "modal";
+    const add_item_form = document.createElement("div");
+    add_item_form.id = "itemModal";
+    
     
     // Create modal content
     const content = document.createElement("div");
     content.className = "modal-content";
-
-    // Close button
-    const close = document.createElement("span");
-    close.textContent = "×";
-    close.className = "modal-close";
-    content.appendChild(close);
 
     // Form
     const form = document.createElement("form");
     form.id = "itemForm";
     form.className = "item-form";
     form.innerHTML = `
-        <h3>Add Item</h3>
         <label>Quantity:</label>
         <input type="number" id="itemQuantity" required>
         <label>Price:</label>
@@ -148,24 +152,10 @@ function createPopupUI(display,button) {
         <button type="submit">Submit</button>
     `;
     content.appendChild(form);
-    modal.appendChild(content);
-    display.appendChild(modal);
-
-    // Show modal
-    button.addEventListener("click", () => {
-        modal.style.display = "flex";
-        document.getElementById("itemDate").value = new Date().toISOString().split("T")[0];
-    });
-
-    // Hide modal on close
-    close.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-
-    // Hide modal if clicking outside
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) modal.style.display = "none";
-    });
+    add_item_form.appendChild(content);
+    add_item_form.classList.add("add_item_form");
+    display.appendChild(add_item_form);
+    
 
     // Form submission
     form.addEventListener("submit", (e) => {
@@ -177,7 +167,9 @@ function createPopupUI(display,button) {
 
         console.log({ q, p, f, d });
 
-        modal.style.display = "none";
+        add_item_form.style.display = "none";
         form.reset();
     });
+
+    return add_item_form
 }

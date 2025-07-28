@@ -94,3 +94,21 @@ th, td {
 th {
   background-color: #f2f2f2;
 }
+
+
+/*ADD ITEM FORM STYLES*/
+
+.add_button_item {
+  display: block;
+}
+.add_button_item.hide {
+  display: none;
+}
+
+.add_item_form {
+  display: none;
+}
+
+.add_item_form.show {
+  display: inline-block; 
+}
